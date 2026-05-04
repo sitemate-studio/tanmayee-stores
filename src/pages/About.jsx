@@ -1,84 +1,43 @@
 import { Link } from "react-router-dom";
 import { STORE_CONFIG } from "@/lib/storeData";
 
-// Safe phone formatting for WhatsApp
-const phoneNumber = String(
-  STORE_CONFIG?.whatsappNumber || STORE_CONFIG?.phone || ""
-).replace(/\D/g, "");
-
-const waUrl = `https://wa.me/${phoneNumber}`;
-
-const mapsUrl =
-  "https://maps.google.com/?q=Tanmayee+Fancy+Store+Nizamabad";
-
 const WA_ICON = (
-  <svg
-    viewBox="0 0 24 24"
-    fill="#fff"
-    style={{ width: 18, height: 18, flexShrink: 0 }}
-  >
-    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z" />
-    <path
-      d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.112 1.523 5.84L.057 23.43a.5.5 0 0 0 .608.61l5.7-1.49A11.943 11.943 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.9a9.887 9.887 0 0 1-5.031-1.378l-.36-.214-3.733.977.999-3.645-.235-.374A9.862 9.862 0 0 1 2.1 12C2.1 6.534 6.534 2.1 12 2.1c5.466 0 9.9 4.434 9.9 9.9 0 5.466-4.434 9.9-9.9 9.9z"
-      fillRule="evenodd"
-    />
+  <svg viewBox="0 0 24 24" fill="#fff" style={{ width: 18, height: 18, flexShrink: 0 }}>
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/>
+    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.112 1.523 5.84L.057 23.43a.5.5 0 0 0 .608.61l5.7-1.49A11.943 11.943 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.9a9.887 9.887 0 0 1-5.031-1.378l-.36-.214-3.733.977.999-3.645-.235-.374A9.862 9.862 0 0 1 2.1 12C2.1 6.534 6.534 2.1 12 2.1c5.466 0 9.9 4.434 9.9 9.9 0 5.466-4.434 9.9-9.9 9.9z" fillRule="evenodd"/>
   </svg>
 );
 
 const VALUES = [
   {
     title: "Trusted Quality",
-    desc:
-      "Carefully selected imitation jewellery and clothing from reliable suppliers",
+    desc: "Carefully selected imitation jewellery and clothing from reliable suppliers",
+    icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8b6320" strokeWidth="1.5" strokeLinecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>,
   },
   {
     title: "New Stock Weekly",
-    desc:
-      "Fresh arrivals every week so there is always something new to find",
+    desc: "Fresh arrivals every week so there is always something new to find",
+    icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8b6320" strokeWidth="1.5" strokeLinecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>,
   },
   {
     title: "Customer First",
-    desc:
-      "Friendly service and a warm shopping experience every visit",
+    desc: "Friendly service and a warm shopping experience every visit",
+    icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8b6320" strokeWidth="1.5" strokeLinecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>,
   },
   {
     title: "Affordable Prices",
-    desc:
-      "Premium look at prices that work for everyday budgets",
+    desc: "Premium look at prices that work for everyday budgets",
+    icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8b6320" strokeWidth="1.5" strokeLinecap="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>,
   },
 ];
 
 const OFFERS = [
-  {
-    title: "Jewellery & Accessories",
-    sub:
-      "Necklace sets, bangles, Jhumka earrings, Chandbali, Mangalsutra and more",
-  },
-  {
-    title: "Sarees",
-    sub:
-      "Traditional sarees with decorative borders for all occasions",
-  },
-  {
-    title: "Dress Materials",
-    sub:
-      "Unstitched and semi-stitched suit pieces and fabrics",
-  },
-  {
-    title: "Ready-to-wear",
-    sub:
-      "Long gowns, nighties and maxi dresses",
-  },
-  {
-    title: "Handbags & Purses",
-    sub:
-      "Modern ladies handbags, clutches and purses",
-  },
-  {
-    title: "Hair Accessories",
-    sub:
-      "Colourful hair scrunchies, clips and bands",
-  },
+  { title: "Jewellery & Accessories", sub: "Necklace sets, bangles, Jhumka earrings, Chandbali, Mangalsutra and more" },
+  { title: "Sarees", sub: "Traditional sarees with decorative borders for all occasions" },
+  { title: "Dress Materials", sub: "Unstitched and semi-stitched suit pieces and fabrics" },
+  { title: "Ready-to-wear", sub: "Long gowns, nighties and maxi dresses in various colours and patterns" },
+  { title: "Handbags & Purses", sub: "Modern ladies handbags, clutches and purses for everyday and occasions" },
+  { title: "Hair Accessories", sub: "Colourful hair scrunchies, clips and bands for all hair types" },
 ];
 
 const HOURS = [
@@ -88,297 +47,193 @@ const HOURS = [
 ];
 
 export default function About() {
+  const waUrl = `https://wa.me/${STORE_CONFIG.whatsapp}`;
+
   return (
     <div style={{ background: "#fdf6ed", minHeight: "100vh" }}>
-      
+
       {/* Breadcrumb */}
-      <div
-        style={{
-          padding: "14px 24px",
-          borderBottom: "0.5px solid #e8d5b0",
-        }}
-      >
-        <div style={{ display: "flex", gap: 6 }}>
-          <Link
-            to="/"
-            style={{
-              fontSize: 11,
-              color: "#8b6320",
-              textDecoration: "none",
-            }}
-          >
-            Home
-          </Link>
-          <span>›</span>
-          <span style={{ fontSize: 11, color: "#b09080" }}>
-            About Us
-          </span>
+      <div style={{ padding: "14px 24px", borderBottom: "0.5px solid #e8d5b0" }} className="max-[480px]:!px-4">
+        <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+          <Link to="/" style={{ fontSize: 11, color: "#8b6320", textDecoration: "none" }}>Home</Link>
+          <span style={{ fontSize: 11, color: "#d4b896" }}>›</span>
+          <span style={{ fontSize: 11, color: "#b09080" }}>About Us</span>
         </div>
       </div>
 
       {/* Hero */}
-      <div
-        style={{
-          background: "#2d0a1c",
-          padding: "60px 24px",
-          textAlign: "center",
-        }}
-      >
-        <div
-          style={{
-            fontSize: 10,
-            letterSpacing: 4,
-            color: "#9a6050",
-            marginBottom: 14,
-            textTransform: "uppercase",
-          }}
-        >
-          Our Story
+      <div style={{ background: "#2d0a1c", padding: "52px 24px 48px", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }} className="max-[480px]:!px-4 max-[480px]:!py-10">
+        <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 20 }}>
+          <div style={{ width: 48, height: 0.5, background: "#4a1a2c" }} />
+          <div style={{ width: 8, height: 8, background: "#c9a84c", transform: "rotate(45deg)" }} />
+          <div style={{ width: 48, height: 0.5, background: "#4a1a2c" }} />
         </div>
-
-        <h1
-          style={{
-            color: "#f0c96e",
-            fontSize: "clamp(32px,6vw,54px)",
-            marginBottom: 10,
-            fontStyle: "italic",
-            fontFamily: "'Playfair Display', serif",
-          }}
-        >
+        <div style={{ fontSize: 10, color: "#9a6050", letterSpacing: 4, textTransform: "uppercase", marginBottom: 14 }}>Our Story</div>
+        <h1 style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", fontSize: "clamp(32px, 6vw, 54px)", color: "#f0c96e", lineHeight: 1.2, marginBottom: 8 }}>
           Tanmayee Fancy Store
         </h1>
-
-        <div
-          style={{
-            color: "#7a5060",
-            marginBottom: 20,
-          }}
-        >
-          తన్మయీ ఫ్యాన్సీ స్టోర్
-        </div>
-
-        <p
-          style={{
-            color: "#c9a0a8",
-            maxWidth: 550,
-            margin: "0 auto",
-            lineHeight: 1.8,
-            fontSize: 14,
-          }}
-        >
-          Nizamabad's destination for ethnic fashion,
-          jewellery, sarees, handbags and accessories.
+        <div style={{ fontSize: 16, color: "#7a5060", marginBottom: 22 }}>తన్మయీ ఫ్యాన్సీ స్టోర్</div>
+        <p style={{ fontSize: 14, color: "#c9a0a8", lineHeight: 1.8, maxWidth: 480 }}>
+          Nizamabad's favourite destination for ethnic fashion, jewellery and accessories — bringing beauty and tradition to every woman's wardrobe.
         </p>
       </div>
 
-      {/* Values */}
-      <div
-        style={{
-          maxWidth: 900,
-          margin: "0 auto",
-          padding: "50px 24px",
-        }}
-      >
-        <h2
-          style={{
-            textAlign: "center",
-            marginBottom: 30,
-            color: "#2d0a1c",
-          }}
-        >
-          Why Customers Love Us
-        </h2>
-
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns:
-              "repeat(auto-fit,minmax(200px,1fr))",
-            gap: 16,
-          }}
-        >
-          {VALUES.map((item, i) => (
-            <div
-              key={i}
-              style={{
-                background: "#fff9f2",
-                border: "0.5px solid #e8d5b0",
-                borderRadius: 12,
-                padding: 20,
-              }}
-            >
-              <h3
-                style={{
-                  fontSize: 14,
-                  color: "#2d0a1c",
-                  marginBottom: 8,
-                }}
-              >
-                {item.title}
-              </h3>
-
-              <p
-                style={{
-                  fontSize: 12,
-                  color: "#8b6320",
-                  lineHeight: 1.6,
-                }}
-              >
-                {item.desc}
-              </p>
-            </div>
-          ))}
+      {/* Story */}
+      <div style={{ maxWidth: 860, margin: "0 auto", padding: "52px 24px", borderBottom: "0.5px solid #e8d5b0" }} className="max-[480px]:!px-4 max-[480px]:!py-9">
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48, alignItems: "center" }} className="max-[680px]:!grid-cols-1 max-[680px]:!gap-7">
+          <div style={{ aspectRatio: "4/5", background: "#fbeaf2", borderRadius: 12, border: "0.5px solid #e8d5b0", display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <svg width="120" height="120" viewBox="0 0 48 48">
+              <path d="M 8 16 Q 24 34 40 16" fill="none" stroke="#c9a84c" strokeWidth="1.8" strokeLinecap="round"/>
+              <circle cx="8" cy="16" r="3.5" fill="#c9a84c"/>
+              <circle cx="40" cy="16" r="3.5" fill="#c9a84c"/>
+              <circle cx="14" cy="22" r="2.5" fill="#e8c97a"/>
+              <circle cx="24" cy="29" r="3" fill="#f0d48a"/>
+              <circle cx="34" cy="23" r="2.5" fill="#e8c97a"/>
+              <line x1="24" y1="32" x2="24" y2="38" stroke="#c9a84c" strokeWidth="1.2"/>
+              <polygon points="24,38 19,45 24,48 29,45" fill="#c9a84c"/>
+              <circle cx="24" cy="43" r="2.5" fill="#fbeaf2"/>
+              <circle cx="24" cy="43" r="1.2" fill="#c9a84c"/>
+            </svg>
+          </div>
+          <div>
+            <span style={{ fontSize: 10, color: "#8b6320", letterSpacing: 3, textTransform: "uppercase", marginBottom: 10, display: "block" }}>Who we are</span>
+            <h2 style={{ fontSize: 22, fontWeight: 600, color: "#2d0a1c", marginBottom: 18, lineHeight: 1.3, letterSpacing: -0.3 }}>A store built on love for ethnic fashion</h2>
+            <p style={{ fontSize: 13, color: "#5a3a2a", lineHeight: 1.9, marginBottom: 14 }}>
+              Tanmayee Fancy Store was born out of a simple belief — every woman deserves to feel beautiful without spending a fortune. Located in the heart of Nizamabad, Telangana, we have been serving local women with a wide range of ethnic jewellery, sarees, dress materials, and fashion accessories.
+            </p>
+            <p style={{ fontSize: 13, color: "#5a3a2a", lineHeight: 1.9, marginBottom: 14 }}>
+              From colourful silk thread bangles to gold-tone necklace sets, from traditional sarees to modern ready-to-wear gowns — our store brings together the best of ethnic and contemporary fashion under one roof.
+            </p>
+            <p style={{ fontSize: 13, color: "#5a3a2a", lineHeight: 1.9 }}>
+              We pride ourselves on being a trusted neighbourhood store where customers feel at home. Our collection is refreshed regularly so there is always something new to discover.
+            </p>
+          </div>
         </div>
       </div>
 
-      {/* Products */}
-      <div
-        style={{
-          background: "#fff9f2",
-          padding: "50px 24px",
-        }}
-      >
-        <div
-          style={{
-            maxWidth: 900,
-            margin: "0 auto",
-          }}
-        >
-          <h2
-            style={{
-              color: "#2d0a1c",
-              marginBottom: 30,
-            }}
-          >
-            What We Offer
-          </h2>
+      {/* Stats strip */}
+      <div style={{ background: "#2d0a1c", padding: "36px 24px" }}>
+        <div style={{ maxWidth: 860, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 0.5px 1fr 0.5px 1fr", gap: 0 }} className="max-[480px]:!grid-cols-1 max-[480px]:!gap-6">
+          {[
+            { num: "500+", label: "Products in store" },
+            null,
+            { num: "8+", label: "Categories" },
+            null,
+            { num: "Daily", label: "New arrivals" },
+          ].map((item, i) =>
+            item === null ? (
+              <div key={i} style={{ background: "#4a1a2c" }} className="max-[480px]:hidden" />
+            ) : (
+              <div key={i} style={{ textAlign: "center" }}>
+                <div style={{ fontFamily: "'Playfair Display', serif", fontSize: 36, color: "#f0c96e", fontWeight: 700, lineHeight: 1, marginBottom: 6 }}>{item.num}</div>
+                <div style={{ fontSize: 11, color: "#9a6878", letterSpacing: 1 }}>{item.label}</div>
+              </div>
+            )
+          )}
+        </div>
+      </div>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns:
-                "repeat(auto-fit,minmax(250px,1fr))",
-              gap: 14,
-            }}
-          >
-            {OFFERS.map((item, i) => (
-              <div
-                key={i}
-                style={{
-                  background: "#fdf6ed",
-                  padding: 18,
-                  borderRadius: 10,
-                  border: "0.5px solid #e8d5b0",
-                }}
-              >
-                <div
-                  style={{
-                    fontWeight: 600,
-                    marginBottom: 6,
-                    color: "#2d0a1c",
-                  }}
-                >
-                  {item.title}
+      {/* Values */}
+      <div style={{ background: "#fff9f2", borderTop: "0.5px solid #e8d5b0", borderBottom: "0.5px solid #e8d5b0", padding: "52px 24px" }} className="max-[480px]:!px-4 max-[480px]:!py-9">
+        <div style={{ maxWidth: 860, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: 36 }}>
+            <span style={{ fontSize: 10, color: "#8b6320", letterSpacing: 3, textTransform: "uppercase", display: "block", marginBottom: 8 }}>Why choose us</span>
+            <h2 style={{ fontSize: 22, fontWeight: 600, color: "#2d0a1c", letterSpacing: -0.3 }}>What makes us different</h2>
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16 }} className="max-[720px]:!grid-cols-2 max-[400px]:!gap-3">
+            {VALUES.map((v, i) => (
+              <div key={i} style={{ background: "#fdf6ed", border: "0.5px solid #e8d5b0", borderRadius: 12, padding: "24px 16px", textAlign: "center" }}>
+                <div style={{ width: 48, height: 48, borderRadius: "50%", border: "0.5px solid #e8d5b0", background: "#fff9f2", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 14px" }}>
+                  {v.icon}
                 </div>
-
-                <div
-                  style={{
-                    fontSize: 12,
-                    color: "#8b6320",
-                    lineHeight: 1.6,
-                  }}
-                >
-                  {item.sub}
-                </div>
+                <div style={{ fontSize: 13, fontWeight: 600, color: "#2d0a1c", marginBottom: 6, lineHeight: 1.3 }}>{v.title}</div>
+                <div style={{ fontSize: 11, color: "#b09080", lineHeight: 1.6 }}>{v.desc}</div>
               </div>
             ))}
           </div>
         </div>
       </div>
 
-      {/* Visit Us */}
-      <div
-        style={{
-          maxWidth: 900,
-          margin: "0 auto",
-          padding: "50px 24px",
-        }}
-      >
-        <h2
-          style={{
-            color: "#2d0a1c",
-            marginBottom: 20,
-          }}
-        >
-          Visit Our Store
-        </h2>
-
-        {HOURS.map((item, i) => (
-          <div
-            key={i}
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              padding: "8px 0",
-              borderBottom:
-                i !== HOURS.length - 1
-                  ? "0.5px solid #e8d5b0"
-                  : "none",
-            }}
-          >
-            <span>{item.day}</span>
-            <span>{item.time}</span>
-          </div>
-        ))}
-
-        <div
-          style={{
-            marginTop: 30,
-            display: "flex",
-            flexDirection: "column",
-            gap: 12,
-          }}
-        >
-          <a
-            href={mapsUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              background: "#f0c96e",
-              color: "#2d0a1c",
-              textDecoration: "none",
-              textAlign: "center",
-              padding: 14,
-              borderRadius: 8,
-              fontWeight: 600,
-            }}
-          >
-            Open in Google Maps
-          </a>
-
-          <a
-            href={waUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              background: "#25d366",
-              color: "#fff",
-              textDecoration: "none",
-              textAlign: "center",
-              padding: 14,
-              borderRadius: 8,
-              fontWeight: 600,
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              gap: 8,
-            }}
-          >
-            {WA_ICON}
-            Chat on WhatsApp
-          </a>
+      {/* What we offer */}
+      <div style={{ maxWidth: 860, margin: "0 auto", padding: "52px 24px", borderBottom: "0.5px solid #e8d5b0" }} className="max-[480px]:!px-4 max-[480px]:!py-9">
+        <div style={{ marginBottom: 28 }}>
+          <span style={{ fontSize: 10, color: "#8b6320", letterSpacing: 3, textTransform: "uppercase", display: "block", marginBottom: 10 }}>Our collection</span>
+          <h2 style={{ fontSize: 22, fontWeight: 600, color: "#2d0a1c", letterSpacing: -0.3 }}>What we offer</h2>
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 12 }} className="max-[500px]:!grid-cols-1">
+          {OFFERS.map((o, i) => (
+            <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 12, padding: 16, background: "#fff9f2", border: "0.5px solid #e8d5b0", borderRadius: 10 }}>
+              <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#c9a84c", flexShrink: 0, marginTop: 5 }} />
+              <div>
+                <div style={{ fontSize: 13, fontWeight: 600, color: "#2d0a1c", marginBottom: 3 }}>{o.title}</div>
+                <div style={{ fontSize: 11, color: "#b09080", lineHeight: 1.5 }}>{o.sub}</div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
+
+      {/* Come visit us label */}
+      <div style={{ background: "#f5efe4", padding: "8px 24px", display: "flex", alignItems: "center", gap: 14, borderTop: "0.5px solid #e8d5b0", borderBottom: "0.5px solid #e8d5b0" }}>
+        <div style={{ flex: 1, height: 0.5, background: "#d4b896" }} />
+        <div style={{ fontSize: 10, color: "#9a7060", letterSpacing: 3, textTransform: "uppercase", whiteSpace: "nowrap" }}>Come visit us</div>
+        <div style={{ flex: 1, height: 0.5, background: "#d4b896" }} />
+      </div>
+
+      {/* Visit section */}
+      <div style={{ maxWidth: 860, margin: "0 auto", padding: "52px 24px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40, alignItems: "start" }} className="max-[640px]:!grid-cols-1 max-[640px]:!gap-7 max-[480px]:!px-4 max-[480px]:!py-9">
+        <div>
+          <span style={{ fontSize: 10, color: "#8b6320", letterSpacing: 3, textTransform: "uppercase", display: "block", marginBottom: 10 }}>Find us</span>
+          <h2 style={{ fontSize: 22, fontWeight: 600, color: "#2d0a1c", marginBottom: 18, letterSpacing: -0.3 }}>We'd love to see you in store</h2>
+          <div style={{ fontSize: 13, color: "#5a3a2a", lineHeight: 2, marginBottom: 20 }}>
+            <strong style={{ color: "#2d0a1c", fontWeight: 600, display: "block", marginBottom: 4 }}>Tanmayee Fancy Store</strong>
+            Nizamabad, Telangana, India
+          </div>
+          <div style={{ background: "#fff9f2", border: "0.5px solid #e8d5b0", borderRadius: 10, padding: 16, marginBottom: 20 }}>
+            <div style={{ fontSize: 11, color: "#8b6320", letterSpacing: 2, textTransform: "uppercase", marginBottom: 10 }}>Store Hours</div>
+            {HOURS.map((h, i) => (
+              <div key={i} style={{ display: "flex", justifyContent: "space-between", fontSize: 12, color: "#5a3a2a", padding: "5px 0", borderBottom: i < HOURS.length - 1 ? "0.5px solid #f0e4d0" : "none" }}>
+                <span style={{ color: "#8b6320" }}>{h.day}</span>
+                <span>{h.time}</span>
+              </div>
+            ))}
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+            <a
+              href="https://maps.google.com/?q=Tanmayee+Fancy+Store+Nizamabad"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, background: "#f0c96e", color: "#2d0a1c", padding: "13px 20px", borderRadius: 6, fontSize: 13, fontWeight: 600, textDecoration: "none" }}
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2d0a1c" strokeWidth="2" strokeLinecap="round">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+                <circle cx="12" cy="9" r="2.5" fill="#2d0a1c" stroke="none"/>
+              </svg>
+              Get Directions on Google Maps
+            </a>
+            <a
+              href={waUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, background: "#25d366", color: "#fff", padding: "13px 20px", borderRadius: 6, fontSize: 13, fontWeight: 600, textDecoration: "none" }}
+            >
+              {WA_ICON}
+              Message us on WhatsApp
+            </a>
+          </div>
+        </div>
+
+        {/* Map placeholder */}
+        <div style={{ borderRadius: 12, overflow: "hidden", border: "0.5px solid #e8d5b0", background: "#f5efe4", aspectRatio: "4/3", display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", gap: 10 }}>
+          <iframe
+            title="Store Location"
+            src="https://maps.google.com/maps?q=Nizamabad,Telangana,India&output=embed"
+            style={{ width: "100%", height: "100%", border: "none", display: "block" }}
+            loading="lazy"
+          />
+        </div>
+      </div>
+
     </div>
   );
 }
