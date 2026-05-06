@@ -1,21 +1,14 @@
 
 
-import { useMemo, useRef, useState } from "react";
-import { Link } from "react-router-dom";
-import { CATEGORIES, getProductName } from "@/lib/storeData";
+import { useEffect, useMemo, useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
+import Breadcrumbs from "@/components/store/Breadcrumbs";
+import CollectionProductCard from "@/components/collections/CollectionProductCard";
+import CategorySelectGrid from "@/components/collections/CategorySelectGrid";
+import PriceSlider from "@/components/collections/PriceSlider";
 import { useLang } from "@/context/LanguageContext";
-import { PRODUCTS } from "@/data/products";
-
-const CARD_COLORS = [
-  "#fbeaf2",
-  "#eeeaf8",
-  "#eaf5ee",
-  "#faf0e4",
-  "#fbeaf2",
-  "#eaf5f5",
-  "#f0eaf8",
-  "#eaf5ee",
-];
+import { CATEGORIES, PRODUCTS } from "@/data/products";
+import { COLLECTION_GRID_CLASS } from "@/components/collections/collectionClasses";
 
 const PILL_STYLE = (active) => ({
   padding: "7px 16px",
@@ -38,331 +31,11 @@ const PILL_STYLE = (active) => ({
     : "0.5px solid #d4b896",
 });
 
-function ProductCard({
-  product,
-  index,
-}) {
-  const { lang } = useLang();
-
-  const primaryName =
-    getProductName(product, lang);
-
-  const imgSrc =
-    product.images?.[0];
-
-  const bg =
-    CARD_COLORS[
-      index % CARD_COLORS.length
-    ];
-
-  return (
-    <Link
-      to={`/product/${product.id}`}
-      style={{
-        background: "#fff9f2",
-        borderRadius: 12,
-        overflow: "hidden",
-        border:
-          "0.5px solid #e8d5b0",
-        textDecoration: "none",
-        display: "block",
-      }}
-    >
-      <div
-        style={{
-          aspectRatio: "1",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          background: bg,
-          position: "relative",
-          overflow: "hidden",
-        }}
-      >
-        {!product.in_stock && (
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              display: "flex",
-              alignItems: "center",
-              justifyContent:
-                "center",
-              background:
-                "rgba(253,246,237,0.7)",
-              zIndex: 2,
-            }}
-          >
-            <span
-              style={{
-                fontSize: 10,
-                color: "#9a6050",
-                letterSpacing: 1,
-                textTransform:
-                  "uppercase",
-                border:
-                  "0.5px solid #d4b896",
-                padding:
-                  "4px 10px",
-                borderRadius: 10,
-                background:
-                  "#fdf6ed",
-              }}
-            >
-              Out of stock
-            </span>
-          </div>
-        )}
-
-        {product.is_new_arrival &&
-          product.in_stock && (
-            <div
-              style={{
-                position:
-                  "absolute",
-                top: 8,
-                left: 8,
-                background:
-                  "#2d0a1c",
-                color:
-                  "#f0c96e",
-                fontSize: 9,
-                padding:
-                  "3px 8px",
-                borderRadius: 10,
-                fontWeight: 500,
-                zIndex: 2,
-              }}
-            >
-              New
-            </div>
-          )}
-
-        {imgSrc ? (
-          <img
-            src={imgSrc}
-            alt={
-              product.name_en
-            }
-            loading="lazy"
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit:
-                "cover",
-              opacity:
-                product.in_stock
-                  ? 1
-                  : 0.5,
-            }}
-          />
-        ) : (
-          <div
-            style={{
-              fontSize: 40,
-              color:
-                "#c9a84c",
-            }}
-          >
-            ✦
-          </div>
-        )}
-      </div>
-
-      <div
-        style={{ padding: "10px 10px 0", opacity: product.in_stock ? 1 : 0.6 }}
-      >
-        <span
-          style={{
-            fontSize: 13,
-            color: "#2d0a1c",
-            display: "block",
-            lineHeight: 1.3,
-          }}
-        >
-          {primaryName}
-        </span>
-
-        {lang === "en" && product.name_te && (
-          <span style={{ fontSize: 10, color: "#b09080", display: "block", marginTop: 2 }}>
-            {product.name_te}
-          </span>
-        )}
-
-        <div
-          style={{
-            fontSize: 13,
-            color: "#8b6320",
-            fontWeight: 600,
-            marginTop: 6,
-            paddingBottom: 10,
-          }}
-        >
-          ₹
-          {product.price?.toLocaleString(
-            "en-IN"
-          )}
-        </div>
-      </div>
-    </Link>
-  );
-}
-
-function PriceSlider({
-  min,
-  max,
-  value,
-  onChange,
-}) {
-  const rangeRef =
-    useRef(null);
-
-  const handleMin = (e) => {
-    const v = Math.min(
-      Number(
-        e.target.value
-      ),
-      value[1] - 1
-    );
-
-    onChange([
-      v,
-      value[1],
-    ]);
-  };
-
-  const handleMax = (e) => {
-    const v = Math.max(
-      Number(
-        e.target.value
-      ),
-      value[0] + 1
-    );
-
-    onChange([
-      value[0],
-      v,
-    ]);
-  };
-
-  const minPct =
-    ((value[0] - min) /
-      (max - min)) *
-    100;
-
-  const maxPct =
-    ((value[1] - min) /
-      (max - min)) *
-    100;
-
-  return (
-    <div style={{ padding: "0 4px" }}>
-      <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 10 }}>
-        <span style={{ fontSize: 11, color: "#8b6320", fontWeight: 600 }}>
-          ₹{value[0].toLocaleString("en-IN")}
-        </span>
-        <span style={{ fontSize: 11, color: "#8b6320", fontWeight: 600 }}>
-          ₹{value[1].toLocaleString("en-IN")}
-        </span>
-      </div>
-
-      <div ref={rangeRef} style={{ position: "relative", height: 20 }}>
-        <div
-          style={{
-            position: "absolute",
-            top: "50%",
-            transform: "translateY(-50%)",
-            left: 0,
-            right: 0,
-            height: 4,
-            background: "#e8d5b0",
-            borderRadius: 2,
-          }}
-        />
-
-        <div
-          style={{
-            position: "absolute",
-            top: "50%",
-            transform: "translateY(-50%)",
-            left: `${minPct}%`,
-            right: `${100 - maxPct}%`,
-            height: 4,
-            background: "#c9a84c",
-            borderRadius: 2,
-          }}
-        />
-
-        <input
-          type="range"
-          min={min}
-          max={max}
-          value={value[0]}
-          onChange={handleMin}
-          style={{
-            position: "absolute",
-            width: "100%",
-            height: "100%",
-            opacity: 0,
-            cursor: "pointer",
-            zIndex: 2,
-          }}
-        />
-
-        <input
-          type="range"
-          min={min}
-          max={max}
-          value={value[1]}
-          onChange={handleMax}
-          style={{
-            position: "absolute",
-            width: "100%",
-            height: "100%",
-            opacity: 0,
-            cursor: "pointer",
-            zIndex: 3,
-          }}
-        />
-
-        <div
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: `${minPct}%`,
-            transform: "translate(-50%, -50%)",
-            width: 16,
-            height: 16,
-            background: "#2d0a1c",
-            border: "2px solid #c9a84c",
-            borderRadius: "50%",
-            pointerEvents: "none",
-            zIndex: 1,
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: `${maxPct}%`,
-            transform: "translate(-50%, -50%)",
-            width: 16,
-            height: 16,
-            background: "#2d0a1c",
-            border: "2px solid #c9a84c",
-            borderRadius: "50%",
-            pointerEvents: "none",
-            zIndex: 1,
-          }}
-        />
-      </div>
-    </div>
-  );
-}
-
 export default function Collections() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const [activeCategory, setActiveCategory] = useState(urlParams.get("category") || "all");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const activeCategory = searchParams.get("category");
+  const showProducts = Boolean(activeCategory);
+
   const [search, setSearch] = useState("");
   const [sortBy, setSortBy] = useState("default");
   const [showSort, setShowSort] = useState(false);
@@ -371,6 +44,26 @@ export default function Collections() {
   const [priceRange, setPriceRange] = useState([0, 5000]);
   const [priceRangeActive, setPriceRangeActive] = useState(false);
   const { lang } = useLang();
+
+  useEffect(() => {
+    if (!showProducts) {
+      setSearch("");
+      setSortBy("default");
+      setShowSort(false);
+      setShowFilters(false);
+      setQuickFilter("all");
+      setPriceRange([0, 5000]);
+      setPriceRangeActive(false);
+      return;
+    }
+
+    setSearch("");
+    setSortBy("default");
+    setShowSort(false);
+    setShowFilters(false);
+    setQuickFilter("all");
+    setPriceRangeActive(false);
+  }, [showProducts, activeCategory]);
 
   const products = PRODUCTS;
 
@@ -408,17 +101,11 @@ export default function Collections() {
         ...products,
       ];
 
-      if (
-        activeCategory !==
-        "all"
-      ) {
-        result =
-          result.filter(
-            (p) =>
-              p.category ===
-              activeCategory
-          );
+      if (!showProducts) {
+        return [];
       }
+
+      result = result.filter((p) => p.category === activeCategory);
 
       if (search.trim()) {
         const q = search.toLowerCase();
@@ -471,6 +158,7 @@ export default function Collections() {
     }, [
       products,
       activeCategory,
+      showProducts,
       search,
       quickFilter,
       sortBy,
@@ -479,9 +167,9 @@ export default function Collections() {
     ]);
 
   const activeLabel =
-    activeCategory === "all"
-      ? "All Collections"
-      : CATEGORIES.find((c) => c.slug === activeCategory)?.name_en || "Collections";
+    showProducts
+      ? CATEGORIES.find((c) => c.slug === activeCategory)?.name_en || "Collections"
+      : "Collections";
 
   const sortLabels = {
     default: "Default",
@@ -501,19 +189,34 @@ export default function Collections() {
       }}
     >
       <div style={{ background: "#fdf6ed", padding: "18px 24px 0", borderBottom: "0.5px solid #e8d5b0" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 12 }}>
-          <Link to="/" style={{ fontSize: 11, color: "#8b6320", textDecoration: "none" }}>
-            Home
-          </Link>
-          <span style={{ fontSize: 11, color: "#d4b896" }}>›</span>
-          <span style={{ fontSize: 11, color: "#b09080" }}>Collections</span>
-        </div>
+        <Breadcrumbs
+          style={{ marginBottom: 12 }}
+          items={[{ label: "Home", to: "/" }, { label: "Collections" }]}
+        />
 
         <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", paddingBottom: 16 }}>
           <div style={{ fontSize: 22, fontWeight: 600, color: "#2d0a1c", letterSpacing: -0.3 }}>{activeLabel}</div>
-          <div style={{ fontSize: 11, color: "#b09080", marginBottom: 2 }}>{filtered.length} items</div>
+          {showProducts ? (
+            <div style={{ fontSize: 11, color: "#b09080", marginBottom: 2 }}>{filtered.length} items</div>
+          ) : (
+            <div style={{ fontSize: 11, color: "#b09080", marginBottom: 2 }}>{CATEGORIES.length} categories</div>
+          )}
         </div>
       </div>
+
+      {!showProducts ? (
+        <CategorySelectGrid />
+      ) : (
+        <>
+          <div style={{ background: "#fdf6ed", padding: "10px 24px", borderBottom: "0.5px solid #e8d5b0" }}>
+            <button
+              onClick={() => setSearchParams({})}
+              className="text-sm text-primary font-medium underline"
+              style={{ fontFamily: "inherit", background: "none", border: "none", cursor: "pointer", padding: 0 }}
+            >
+              ← Back to categories
+            </button>
+          </div>
 
       <div
         style={{
@@ -680,15 +383,19 @@ export default function Collections() {
         className="[&::-webkit-scrollbar]:hidden"
       >
         <div style={{ display: "flex", gap: 8, width: "max-content" }}>
-          <button onClick={() => setActiveCategory("all")} style={PILL_STYLE(activeCategory === "all")}>
-            All
+          <button onClick={() => setSearchParams({})} style={PILL_STYLE(false)}>
+            All Categories
           </button>
 
           {CATEGORIES.map((cat) => {
             const name =
               lang === "te" && cat.name_te ? cat.name_te : lang === "hi" && cat.name_hi ? cat.name_hi : cat.name_en;
             return (
-              <button key={cat.slug} onClick={() => setActiveCategory(cat.slug)} style={PILL_STYLE(activeCategory === cat.slug)}>
+              <button
+                key={cat.slug}
+                onClick={() => setSearchParams({ category: cat.slug })}
+                style={PILL_STYLE(activeCategory === cat.slug)}
+              >
                 {name}
               </button>
             );
@@ -784,7 +491,6 @@ export default function Collections() {
           <button
             onClick={() => {
               setSearch("");
-              setActiveCategory("all");
               setQuickFilter("all");
               setPriceRangeActive(false);
             }}
@@ -803,12 +509,9 @@ export default function Collections() {
           </button>
         </div>
       ) : (
-        <div
-          style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, padding: "20px 24px" }}
-          className="max-[700px]:!grid-cols-2 max-[700px]:!gap-3 max-[700px]:!p-4"
-        >
+        <div className={COLLECTION_GRID_CLASS}>
           {filtered.map((product, i) => (
-            <ProductCard key={product.id} product={product} index={i} />
+            <CollectionProductCard key={product.id} product={product} index={i} />
           ))}
         </div>
       )}
@@ -819,6 +522,9 @@ export default function Collections() {
             Showing {filtered.length} product{filtered.length !== 1 ? "s" : ""}
           </div>
         </div>
+      )}
+
+        </>
       )}
     </div>
   );

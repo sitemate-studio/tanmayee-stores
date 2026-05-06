@@ -4,6 +4,7 @@ import {
   getProductName,
   getSecondaryName,
 } from "@/lib/storeData";
+import { getProductPath } from "@/lib/productRouting";
 
 export default function ProductCard({
   product,
@@ -27,7 +28,7 @@ export default function ProductCard({
 
   return (
     <Link
-      to={`/product/${product.id}`}
+      to={getProductPath(product)}
       className="group block bg-card rounded-xl overflow-hidden border border-border shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1"
     >
       <div className="relative aspect-square overflow-hidden bg-muted">

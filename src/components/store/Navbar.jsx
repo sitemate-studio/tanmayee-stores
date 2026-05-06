@@ -5,7 +5,6 @@ import { useLang } from "@/context/LanguageContext";
 const NAV_LINKS = [
   { path: "/", label: "Home" },
   { path: "/collections", label: "Collections" },
-  { path: "/gallery", label: "Gallery" },
   { path: "/about", label: "About" },
   { path: "/contact", label: "Contact" },
 ];

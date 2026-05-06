@@ -1,201 +1,400 @@
+export const CATEGORIES = [
+  {
+    slug: "necklace_sets",
+    name_en: "Necklace Sets",
+    name_te: "హారాలు",
+    name_hi: "हार सेट",
+    image_url: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338",
+  },
+  {
+    slug: "bangles",
+    name_en: "Bangles",
+    name_te: "గాజులు",
+    name_hi: "चूड़ियाँ",
+    image_url: "https://images.unsplash.com/photo-1588444837495-c6cfeb53f32d",
+  },
+  {
+    slug: "sarees",
+    name_en: "Sarees",
+    name_te: "చీరలు",
+    name_hi: "साड़ियाँ",
+    image_url: "https://images.unsplash.com/photo-1610030469983-98e550d6193c",
+  },
+  {
+    slug: "handbags",
+    name_en: "Handbags",
+    name_te: "హ్యాండ్ బ్యాగ్‌లు",
+    name_hi: "हैंडबैग",
+    image_url: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa",
+  },
+  {
+    slug: "earrings",
+    name_en: "Earrings",
+    name_te: "చెవి రింగులు",
+    name_hi: "झुमके",
+    image_url: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908",
+  },
+  {
+    slug: "hair_accessories",
+    name_en: "Hair Accessories",
+    name_te: "జుట్టు ఆక్సెసరీలు",
+    name_hi: "हेयर एक्सेसरीज़",
+    image_url: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1",
+  },
+  {
+    slug: "dress_materials",
+    name_en: "Dress Materials",
+    name_te: "డ్రెస్ మెటీరియల్స్",
+    name_hi: "ड्रेस मटेरियल",
+    image_url: "https://images.unsplash.com/photo-1483985988355-763728e1935b",
+  },
+  {
+    slug: "ready_to_wear",
+    name_en: "Ready-to-Wear",
+    name_te: "రెడీమేడ్ దుస్తులు",
+    name_hi: "रेडीमेड कपड़े",
+    image_url: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b",
+  },
+
+  // NEW CATEGORIES (TEST SCALE)
+  {
+    slug: "anklets",
+    name_en: "Anklets",
+    name_te: "పాదాల గాజులు",
+    name_hi: "पायल",
+    image_url: "https://images.unsplash.com/photo-1602752250015-52934bc45613",
+  },
+  {
+    slug: "rings",
+    name_en: "Rings",
+    name_te: "ఉంగరాలు",
+    name_hi: "अंगूठियाँ",
+    image_url: "https://images.unsplash.com/photo-1605100804763-247f67b3557e",
+  },
+  {
+    slug: "bridal_sets",
+    name_en: "Bridal Sets",
+    name_te: "వధువు సెట్‌లు",
+    name_hi: "ब्राइडल सेट",
+    image_url: "https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3",
+  },
+  {
+    slug: "makeup",
+    name_en: "Makeup",
+    name_te: "మేకప్",
+    name_hi: "मेकअप",
+    image_url: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9",
+  },
+  {
+    slug: "perfumes",
+    name_en: "Perfumes",
+    name_te: "పర్ఫ్యూమ్స్",
+    name_hi: "इत्र",
+    image_url: "https://images.unsplash.com/photo-1541643600914-78b084683601",
+  },
+  {
+    slug: "footwear",
+    name_en: "Footwear",
+    name_te: "ఫుట్‌వేర్",
+    name_hi: "जूते",
+    image_url: "https://images.unsplash.com/photo-1528701800489-20be3c8e0f23",
+  },
+  {
+    slug: "kids_wear",
+    name_en: "Kids Wear",
+    name_te: "పిల్లల దుస్తులు",
+    name_hi: "बच्चों के कपड़े",
+    image_url: "https://images.unsplash.com/photo-1519689680058-324335c77eba",
+  },
+  {
+    slug: "mens_ethnic",
+    name_en: "Men's Ethnic Wear",
+    name_te: "పురుషుల సంప్రదాయ దుస్తులు",
+    name_hi: "पुरुषों के एथनिक कपड़े",
+    image_url: "https://images.unsplash.com/photo-1520975922284-3b8d5f9a1b3c",
+  },
+];
+
 export const PRODUCTS = [
+  // NECKLACE SETS
   {
     id: 1,
     name_en: "Gold Temple Necklace",
     name_te: "బంగారు టెంపుల్ హారం",
     name_hi: "सोने का टेम्पल हार",
-
-    description_en:
-      "Traditional handcrafted temple necklace set for festive occasions.",
-    description_te:
-      "పండుగ సందర్భాలకు సంప్రదాయ హస్తకళ టెంపుల్ హారం సెట్.",
-    description_hi:
-      "त्योहारों के लिए पारंपरिक हस्तनिर्मित टेम्पल हार सेट।",
-
+    description_en: "Traditional handcrafted temple necklace set.",
+    description_te: "సంప్రదాయ టెంపుల్ హారం సెట్.",
+    description_hi: "पारंपरिक टेम्पल हार सेट।",
     category: "necklace_sets",
     price: 1299,
-
     images: [
       "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338",
+      "https://images.unsplash.com/photo-1600721391689-2564bb8055de",
+      "https://images.unsplash.com/photo-1610223515982-5f02c1c5b8f8",
     ],
-
     in_stock: true,
     is_new_arrival: true,
     sort_order: 1,
   },
-
   {
     id: 2,
-    name_en: "Silk Thread Bangles",
-    name_te: "సిల్క్ థ్రెడ్ గాజులు",
-    name_hi: "सिल्क थ्रेड चूड़ियाँ",
-
-    description_en:
-      "Elegant silk thread bangles with traditional detailing.",
-    description_te:
-      "సాంప్రదాయ డిజైన్‌తో అందమైన సిల్క్ థ్రెడ్ గాజులు.",
-    description_hi:
-      "पारंपरिक डिज़ाइन वाली सुंदर सिल्क थ्रेड चूड़ियाँ।",
-
-    category: "bangles",
-    price: 499,
-
-    images: [
-      "https://images.unsplash.com/photo-1588444837495-c6cfeb53f32d",
-    ],
-
+    name_en: "Pearl Bridal Necklace",
+    name_te: "పెర్ల్ బ్రైడల్ హారం",
+    name_hi: "मोती ब्राइडल हार",
+    description_en: "Elegant pearl bridal set.",
+    description_te: "అందమైన పెర్ల్ బ్రైడల్ సెట్.",
+    description_hi: "सुंदर मोती ब्राइडल सेट।",
+    category: "necklace_sets",
+    price: 1899,
+    images: ["https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3"],
     in_stock: true,
-    is_new_arrival: true,
+    is_new_arrival: false,
     sort_order: 2,
   },
 
+  // BANGLES
   {
     id: 3,
-    name_en: "Magenta Pattu Saree",
-    name_te: "మజెంటా పట్టు చీర",
-    name_hi: "मैजेंटा पट्टू साड़ी",
-
-    description_en:
-      "Premium pattu saree with rich woven detailing.",
-    description_te:
-      "అద్భుతమైన నేసిన పనితో ప్రీమియం పట్టు చీర.",
-    description_hi:
-      "सुंदर बुने हुए डिज़ाइन के साथ प्रीमियम पट्टू साड़ी।",
-
-    category: "sarees",
-    price: 2999,
-
-    images: [
-      "https://images.unsplash.com/photo-1610030469983-98e550d6193c",
-    ],
-
+    name_en: "Silk Thread Bangles",
+    name_te: "సిల్క్ థ్రెడ్ గాజులు",
+    name_hi: "सिल्क चूड़ियाँ",
+    category: "bangles",
+    price: 499,
+    images: ["https://images.unsplash.com/photo-1588444837495-c6cfeb53f32d"],
     in_stock: true,
     is_new_arrival: true,
     sort_order: 3,
   },
-
   {
     id: 4,
-    name_en: "Ethnic Handbag",
-    name_te: "ఎథ్నిక్ హ్యాండ్‌బ్యాగ్",
-    name_hi: "एथनिक हैंडबैग",
-
-    description_en:
-      "Stylish ethnic handbag for weddings and celebrations.",
-    description_te:
-      "వివాహాలు మరియు వేడుకలకు స్టైలిష్ ఎథ్నిక్ హ్యాండ్‌బ్యాగ్.",
-    description_hi:
-      "शादी और समारोहों के लिए स्टाइलिश एथनिक हैंडबैग।",
-
-    category: "handbags",
-    price: 899,
-
-    images: [
-      "https://images.unsplash.com/photo-1548036328-c9fa89d128fa",
-    ],
-
+    name_en: "Gold Kada Bangles",
+    name_te: "బంగారు కడ గాజులు",
+    name_hi: "सोने की कड़ा चूड़ियाँ",
+    category: "bangles",
+    price: 2599,
+    images: ["https://images.unsplash.com/photo-1605100804763-247f67b3557e"],
     in_stock: true,
     is_new_arrival: false,
     sort_order: 4,
   },
 
+  // SAREES
   {
     id: 5,
-    name_en: "Jhumka Earrings",
-    name_te: "జుమ్కా చెవిపోగులు",
-    name_hi: "झुमका बालियाँ",
-
-    description_en:
-      "Traditional jhumka earrings with elegant craftsmanship.",
-    description_te:
-      "అందమైన నైపుణ్యంతో సంప్రదాయ జుమ్కా చెవిపోగులు.",
-    description_hi:
-      "सुंदर कारीगरी वाली पारंपरिक झुमका बालियाँ।",
-
-    category: "earrings",
-    price: 599,
-
+    name_en: "Silk Saree Pink",
+    name_te: "పింక్ సిల్క్ చీర",
+    name_hi: "गुलाबी सिल्क साड़ी",
+    category: "sarees",
+    price: 2999,
     images: [
-      "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908",
+      "https://images.unsplash.com/photo-1610030469983-98e550d6193c",
+      "https://images.unsplash.com/photo-1583391733956-6c78276477e8",
+      "https://images.unsplash.com/photo-1542291026-7eec264c27ff",
     ],
-
     in_stock: true,
     is_new_arrival: true,
     sort_order: 5,
   },
-
   {
     id: 6,
-    name_en: "Floral Hair Accessories",
-    name_te: "పూల జుట్టు అలంకరణలు",
-    name_hi: "फ्लोरल हेयर एक्सेसरीज़",
-
-    description_en:
-      "Decorative floral accessories for bridal hairstyles.",
-    description_te:
-      "వధువు హెయిర్‌స్టైల్ కోసం పూల అలంకరణలు.",
-    description_hi:
-      "दुल्हन हेयरस्टाइल के लिए सजावटी फ्लोरल एक्सेसरीज़।",
-
-    category: "hair_accessories",
-    price: 399,
-
-    images: [
-      "https://images.unsplash.com/photo-1524504388940-b1c1722653e1",
-    ],
-
+    name_en: "Banarasi Saree",
+    name_te: "బనారసీ చీర",
+    name_hi: "बनारसी साड़ी",
+    category: "sarees",
+    price: 3499,
+    images: ["https://images.unsplash.com/photo-1583391733956-6c78276477e8"],
     in_stock: true,
     is_new_arrival: false,
     sort_order: 6,
   },
 
+  // HAND BAGS
   {
     id: 7,
-    name_en: "Designer Dress Material",
-    name_te: "డిజైనర్ డ్రೆಸ್ మెటీరియల్",
-    name_hi: "डिज़ाइनर ड्रेस मटेरियल",
-
-    description_en:
-      "Premium dress material for custom tailoring.",
-    description_te:
-      "కస్టమ్ స్టిచింగ్ కోసం ప్రీమియం డ్రెస్ మెటీరియల్.",
-    description_hi:
-      "कस्टम सिलाई के लिए प्रीमियम ड्रेस मटेरियल।",
-
-    category: "dress_materials",
-    price: 1499,
-
+    name_en: "Ethnic Handbag",
+    name_te: "ఎథ్నిక్ హ్యాండ్‌బ్యాగ్",
+    name_hi: "एथनिक हैंडबैग",
+    category: "handbags",
+    price: 899,
     images: [
-      "https://images.unsplash.com/photo-1483985988355-763728e1935b",
+      "https://images.unsplash.com/photo-1548036328-c9fa89d128fa",
+      "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f",
+      "https://images.unsplash.com/photo-1542291026-7eec264c27ff",
     ],
-
     in_stock: true,
-    is_new_arrival: true,
+    is_new_arrival: false,
     sort_order: 7,
   },
 
+  // EARRINGS
   {
     id: 8,
-    name_en: "Ready to Wear Kurti",
-    name_te: "రెడీ టు వేర్ కుర్తీ",
-    name_hi: "रेडी टू वियर कुर्ती",
-
-    description_en:
-      "Comfortable ready-to-wear festive kurti.",
-    description_te:
-      "సౌకర్యవంతమైన పండుగ రెడీ టు వేర్ కుర్తీ.",
-    description_hi:
-      "आरामदायक त्योहारों की रेडी टू वियर कुर्ती।",
-
-    category: "ready_to_wear",
-    price: 1199,
-
+    name_en: "Jhumka Earrings",
+    name_te: "జుమ్కా చెవిపోగులు",
+    name_hi: "झुमका",
+    category: "earrings",
+    price: 599,
     images: [
-      "https://images.unsplash.com/photo-1529139574466-a303027c1d8b",
+      "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908",
+      "https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3",
+      "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338",
     ],
+    in_stock: true,
+    is_new_arrival: true,
+    sort_order: 8,
+  },
 
+  // HAIR ACCESSORIES
+  {
+    id: 9,
+    name_en: "Floral Hair Clip",
+    name_te: "పూల హెయిర్ క్లిప్",
+    name_hi: "फ्लोरल हेयर क्लिप",
+    category: "hair_accessories",
+    price: 299,
+    images: ["https://images.unsplash.com/photo-1524504388940-b1c1722653e1"],
     in_stock: true,
     is_new_arrival: false,
-    sort_order: 8,
+    sort_order: 9,
+  },
+
+  // DRESS MATERIALS
+  {
+    id: 10,
+    name_en: "Cotton Dress Material",
+    name_te: "కాటన్ డ్రెస్ మెటీరియల్",
+    name_hi: "कॉटन ड्रेस मटेरियल",
+    category: "dress_materials",
+    price: 999,
+    images: ["https://images.unsplash.com/photo-1483985988355-763728e1935b"],
+    in_stock: true,
+    is_new_arrival: true,
+    sort_order: 10,
+  },
+
+  // READY TO WEAR
+  {
+    id: 11,
+    name_en: "Festive Kurti",
+    name_te: "పండుగ కుర్తీ",
+    name_hi: "त्योहार कुर्ती",
+    category: "ready_to_wear",
+    price: 1199,
+    images: ["https://images.unsplash.com/photo-1529139574466-a303027c1d8b"],
+    in_stock: true,
+    is_new_arrival: false,
+    sort_order: 11,
+  },
+
+  // ANKLETS
+  {
+    id: 12,
+    name_en: "Silver Anklet Pair",
+    name_te: "వెండి పాదాల గాజులు",
+    name_hi: "चांदी की पायल",
+    category: "anklets",
+    price: 799,
+    images: ["https://images.unsplash.com/photo-1602752250015-52934bc45613"],
+    in_stock: true,
+    is_new_arrival: true,
+    sort_order: 12,
+  },
+
+  // RINGS
+  {
+    id: 13,
+    name_en: "Crystal Ring",
+    name_te: "క్రిస్టల్ ఉంగరం",
+    name_hi: "क्रिस्टल अंगूठी",
+    category: "rings",
+    price: 499,
+    images: ["https://images.unsplash.com/photo-1605100804763-247f67b3557e"],
+    in_stock: true,
+    is_new_arrival: false,
+    sort_order: 13,
+  },
+
+  // BRIDAL SETS
+  {
+    id: 14,
+    name_en: "Heavy Bridal Set",
+    name_te: "భారీ బ్రైడల్ సెట్",
+    name_hi: "भारी ब्राइडल सेट",
+    category: "bridal_sets",
+    price: 5999,
+    images: ["https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3"],
+    in_stock: true,
+    is_new_arrival: true,
+    sort_order: 14,
+  },
+
+  // MAKEUP
+  {
+    id: 15,
+    name_en: "Lipstick Set",
+    name_te: "లిప్‌స్టిక్ సెట్",
+    name_hi: "लिपस्टिक सेट",
+    category: "makeup",
+    price: 699,
+    images: ["https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9"],
+    in_stock: true,
+    is_new_arrival: false,
+    sort_order: 15,
+  },
+
+  // PERFUME
+  {
+    id: 16,
+    name_en: "Floral Perfume",
+    name_te: "పుష్ప సుగంధం",
+    name_hi: "फ्लोरल परफ्यूम",
+    category: "perfumes",
+    price: 999,
+    images: ["https://images.unsplash.com/photo-1541643600914-78b084683601"],
+    in_stock: true,
+    is_new_arrival: true,
+    sort_order: 16,
+  },
+
+  // FOOTWEAR
+  {
+    id: 17,
+    name_en: "Ethnic Sandals",
+    name_te: "ఎథ్నిక్ చెప్పులు",
+    name_hi: "एथनिक सैंडल",
+    category: "footwear",
+    price: 1299,
+    images: ["https://images.unsplash.com/photo-1528701800489-20be3c8e0f23"],
+    in_stock: true,
+    is_new_arrival: false,
+    sort_order: 17,
+  },
+
+  // KIDS WEAR
+  {
+    id: 18,
+    name_en: "Kids Lehenga",
+    name_te: "పిల్లల లెహెంగా",
+    name_hi: "बच्चों का लहंगा",
+    category: "kids_wear",
+    price: 1499,
+    images: ["https://images.unsplash.com/photo-1519689680058-324335c77eba"],
+    in_stock: true,
+    is_new_arrival: true,
+    sort_order: 18,
+  },
+
+  // MEN ETHNIC
+  {
+    id: 19,
+    name_en: "Men Kurta Set",
+    name_te: "పురుషుల కుర్తా సెట్",
+    name_hi: "पुरुष कुर्ता सेट",
+    category: "mens_ethnic",
+    price: 1999,
+    images: ["https://images.unsplash.com/photo-1520975922284-3b8d5f9a1b3c"],
+    in_stock: true,
+    is_new_arrival: false,
+    sort_order: 19,
   },
 ];

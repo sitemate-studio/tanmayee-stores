@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { CATEGORIES } from "@/lib/storeData";
+import { CATEGORIES } from "@/data/products";
 import { useLang } from "@/context/LanguageContext.jsx";
 
 /** @type {Record<string, string>} */
@@ -13,85 +13,6 @@ const CAT_COLORS = {
   dress_materials: "#eaf5ee",
   ready_to_wear: "#f0eaf8",
 };
-
-/**
- * @param {{ slug: string }} props
- */
-function CatIcon({ slug }) {
-  const color = "#c9a84c";
-
-  const iconStyle = {
-    width: 22,
-    height: 22,
-  };
-
-  if (slug === "necklace_sets") {
-    return (
-      <svg {...iconStyle} viewBox="0 0 20 20">
-        <path
-          d="M 2 6 Q 10 14 18 6"
-          fill="none"
-          stroke={color}
-          strokeWidth="1.5"
-        />
-        <circle cx="10" cy="14" r="2.5" fill={color} />
-      </svg>
-    );
-  }
-
-  if (slug === "bangles") {
-    return (
-      <svg {...iconStyle} viewBox="0 0 20 20">
-        <circle
-          cx="10"
-          cy="10"
-          r="7"
-          fill="none"
-          stroke={color}
-          strokeWidth="1.5"
-        />
-      </svg>
-    );
-  }
-
-  if (slug === "sarees") {
-    return (
-      <svg {...iconStyle} viewBox="0 0 20 20">
-        <rect
-          x="4"
-          y="3"
-          width="12"
-          height="15"
-          fill="none"
-          stroke={color}
-          strokeWidth="1.5"
-        />
-      </svg>
-    );
-  }
-
-  if (slug === "handbags") {
-    return (
-      <svg {...iconStyle} viewBox="0 0 20 20">
-        <rect
-          x="4"
-          y="6"
-          width="12"
-          height="10"
-          fill="none"
-          stroke={color}
-          strokeWidth="1.5"
-        />
-      </svg>
-    );
-  }
-
-  return (
-    <svg {...iconStyle} viewBox="0 0 20 20">
-      <circle cx="10" cy="10" r="6" fill={color} />
-    </svg>
-  );
-}
 
 export default function CategoryGrid() {
   const { lang } = useLang();
@@ -144,9 +65,22 @@ export default function CategoryGrid() {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
+                  overflow: "hidden",
                 }}
               >
-                <CatIcon slug={cat.slug} />
+                {cat.image_url ? (
+                  <img
+                    src={cat.image_url}
+                    alt={name}
+                    loading="lazy"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      display: "block",
+                    }}
+                  />
+                ) : null}
               </div>
 
               <div

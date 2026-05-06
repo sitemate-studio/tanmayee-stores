@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useLang } from "@/context/LanguageContext.jsx";
 import { getProductName } from "@/lib/storeData";
+import { getProductPath } from "@/lib/productRouting";
 
 const CARD_COLORS = [
   "#fbeaf2",
@@ -71,7 +72,7 @@ export default function NewArrivals({
             return (
               <Link
                 key={product.id}
-                to={`/product/${product.id}`}
+                to={getProductPath(product)}
                 style={{
                   width: 130,
                   borderRadius: 12,

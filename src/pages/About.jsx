@@ -1,12 +1,7 @@
 import { Link } from "react-router-dom";
-import { STORE_CONFIG } from "@/lib/storeData";
-
-const WA_ICON = (
-  <svg viewBox="0 0 24 24" fill="#fff" style={{ width: 18, height: 18, flexShrink: 0 }}>
-    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/>
-    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.112 1.523 5.84L.057 23.43a.5.5 0 0 0 .608.61l5.7-1.49A11.943 11.943 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.9a9.887 9.887 0 0 1-5.031-1.378l-.36-.214-3.733.977.999-3.645-.235-.374A9.862 9.862 0 0 1 2.1 12C2.1 6.534 6.534 2.1 12 2.1c5.466 0 9.9 4.434 9.9 9.9 0 5.466-4.434 9.9-9.9 9.9z" fillRule="evenodd"/>
-  </svg>
-);
+import Breadcrumbs from "@/components/store/Breadcrumbs";
+import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
+import { STORE_CONFIG, STORE_HOURS, WHATSAPP_URL } from "@/lib/storeData";
 
 const VALUES = [
   {
@@ -40,25 +35,15 @@ const OFFERS = [
   { title: "Hair Accessories", sub: "Colourful hair scrunchies, clips and bands for all hair types" },
 ];
 
-const HOURS = [
-  { day: "Monday – Friday", time: "10:00 am – 8:00 pm" },
-  { day: "Saturday", time: "10:00 am – 9:00 pm" },
-  { day: "Sunday", time: "11:00 am – 7:00 pm" },
-];
-
 export default function About() {
-  const waUrl = `https://wa.me/${STORE_CONFIG.whatsapp}`;
+  const waUrl = WHATSAPP_URL;
 
   return (
     <div style={{ background: "#fdf6ed", minHeight: "100vh" }}>
 
       {/* Breadcrumb */}
       <div style={{ padding: "14px 24px", borderBottom: "0.5px solid #e8d5b0" }} className="max-[480px]:!px-4">
-        <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-          <Link to="/" style={{ fontSize: 11, color: "#8b6320", textDecoration: "none" }}>Home</Link>
-          <span style={{ fontSize: 11, color: "#d4b896" }}>›</span>
-          <span style={{ fontSize: 11, color: "#b09080" }}>About Us</span>
-        </div>
+        <Breadcrumbs items={[{ label: "Home", to: "/" }, { label: "About Us" }]} />
       </div>
 
       {/* Hero */}
@@ -191,8 +176,8 @@ export default function About() {
           </div>
           <div style={{ background: "#fff9f2", border: "0.5px solid #e8d5b0", borderRadius: 10, padding: 16, marginBottom: 20 }}>
             <div style={{ fontSize: 11, color: "#8b6320", letterSpacing: 2, textTransform: "uppercase", marginBottom: 10 }}>Store Hours</div>
-            {HOURS.map((h, i) => (
-              <div key={i} style={{ display: "flex", justifyContent: "space-between", fontSize: 12, color: "#5a3a2a", padding: "5px 0", borderBottom: i < HOURS.length - 1 ? "0.5px solid #f0e4d0" : "none" }}>
+            {STORE_HOURS.map((h, i) => (
+              <div key={i} style={{ display: "flex", justifyContent: "space-between", fontSize: 12, color: "#5a3a2a", padding: "5px 0", borderBottom: i < STORE_HOURS.length - 1 ? "0.5px solid #f0e4d0" : "none" }}>
                 <span style={{ color: "#8b6320" }}>{h.day}</span>
                 <span>{h.time}</span>
               </div>
@@ -200,7 +185,7 @@ export default function About() {
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
             <a
-              href="https://maps.google.com/?q=Tanmayee+Fancy+Store+Nizamabad"
+              href={STORE_CONFIG.googleMapsStore}
               target="_blank"
               rel="noopener noreferrer"
               style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, background: "#f0c96e", color: "#2d0a1c", padding: "13px 20px", borderRadius: 6, fontSize: 13, fontWeight: 600, textDecoration: "none" }}
@@ -217,7 +202,7 @@ export default function About() {
               rel="noopener noreferrer"
               style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, background: "#25d366", color: "#fff", padding: "13px 20px", borderRadius: 6, fontSize: 13, fontWeight: 600, textDecoration: "none" }}
             >
-              {WA_ICON}
+              <WhatsAppIcon fill="#fff" size={18} />
               Message us on WhatsApp
             </a>
           </div>
