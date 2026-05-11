@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 /**
  * Decorative necklace illustration
@@ -137,7 +137,7 @@ export default function HeroSection() {
       </p>
 
       <Link
-        to="/collections"
+        href="/collections"
         style={{
           background: "#f0c96e",
           color: "#2d0a1c",

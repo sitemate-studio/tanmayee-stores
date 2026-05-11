@@ -1,5 +1,8 @@
+"use client";
+
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useLang } from "@/context/LanguageContext";
 
 const NAV_LINKS = [
@@ -26,14 +29,14 @@ const NecklaceLogo = () => (
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const { pathname } = useLocation();
+  const pathname = usePathname();
   const { lang, setLang } = useLang();
 
   return (
     <nav style={{ background: "#fdf6ed", borderBottom: "0.5px solid #e8d5b0", position: "sticky", top: 0, zIndex: 100 }}>
       <div className="px-6 py-[14px] flex items-center justify-between">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-[10px] no-underline">
+        <Link href="/" className="flex items-center gap-[10px] no-underline">
           <NecklaceLogo />
           <div>
             <div style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", fontSize: 20, color: "#2d0a1c", lineHeight: 1 }}>
@@ -50,7 +53,7 @@ export default function Navbar() {
           {NAV_LINKS.map((link) => (
             <Link
               key={link.path}
-              to={link.path}
+              href={link.path}
               style={{
                 fontSize: 13,
                 color: pathname === link.path ? "#2d0a1c" : "#6b3a2a",
@@ -100,7 +103,7 @@ export default function Navbar() {
           {NAV_LINKS.map((link) => (
             <Link
               key={link.path}
-              to={link.path}
+              href={link.path}
               onClick={() => setMobileOpen(false)}
               style={{
                 display: "block",

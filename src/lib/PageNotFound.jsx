@@ -1,11 +1,10 @@
-import { useLocation } from "react-router-dom";
+"use client";
+
+import { usePathname } from "next/navigation";
 
 export default function PageNotFound() {
-  const location = useLocation();
-
-  const pageName =
-    location.pathname.substring(1) ||
-    "unknown";
+  const pathname = usePathname();
+  const pageName = pathname?.substring(1) || "unknown";
 
   return (
     <div

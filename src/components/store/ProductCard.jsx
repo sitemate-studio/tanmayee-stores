@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
 import { useLang } from "@/context/LanguageContext";
 import {
   getProductName,
@@ -28,7 +30,7 @@ export default function ProductCard({
 
   return (
     <Link
-      to={getProductPath(product)}
+      href={getProductPath(product)}
       className="group block bg-card rounded-xl overflow-hidden border border-border shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1"
     >
       <div className="relative aspect-square overflow-hidden bg-muted">

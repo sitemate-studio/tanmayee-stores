@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
 import { useLang } from "@/context/LanguageContext.jsx";
 import { getProductName } from "@/lib/storeData";
 import { getProductPath } from "@/lib/productRouting";
@@ -72,7 +74,7 @@ export default function NewArrivals({
             return (
               <Link
                 key={product.id}
-                to={getProductPath(product)}
+                href={getProductPath(product)}
                 style={{
                   width: 130,
                   borderRadius: 12,

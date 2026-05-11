@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { STORE_CONFIG } from "@/lib/storeData";
 
 const LINKS = [
@@ -26,7 +26,7 @@ const NecklaceLogo = () => (
 export default function Footer() {
   return (
     <footer style={{ background: "#fdf6ed", padding: "28px 24px", borderTop: "0.5px solid #e8d5b0" }}>
-      <Link to="/" style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 14, textDecoration: "none" }}>
+      <Link href="/" style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 14, textDecoration: "none" }}>
         <NecklaceLogo />
         <div>
           <div style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", fontSize: 20, color: "#2d0a1c", lineHeight: 1 }}>
@@ -40,7 +40,7 @@ export default function Footer() {
 
       <div style={{ display: "flex", flexWrap: "wrap", gap: "8px 20px", marginBottom: 14 }}>
         {LINKS.map((l) => (
-          <Link key={l.path} to={l.path} style={{ fontSize: 11, color: "#9a7060", textDecoration: "none" }}>
+          <Link key={l.path} href={l.path} style={{ fontSize: 11, color: "#9a7060", textDecoration: "none" }}>
             {l.label}
           </Link>
         ))}

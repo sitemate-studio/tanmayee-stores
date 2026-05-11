@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 export default function Breadcrumbs({ items = [], style, className }) {
   return (
@@ -20,7 +20,7 @@ export default function Breadcrumbs({ items = [], style, className }) {
           <Fragment key={`${item.label}-${index}`}>
             {item.to ? (
               <Link
-                to={item.to}
+                href={item.to}
                 style={{
                   fontSize: 11,
                   color: "#8b6320",

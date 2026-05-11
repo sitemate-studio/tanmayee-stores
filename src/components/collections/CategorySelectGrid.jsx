@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
 import { useLang } from "@/context/LanguageContext";
 import { CATEGORIES } from "@/data/products";
 
@@ -19,7 +21,7 @@ export default function CategorySelectGrid() {
           return (
             <Link
               key={cat.slug}
-              to={`/collections?category=${cat.slug}`}
+              href={`/collections?category=${cat.slug}`}
               className="group block bg-card rounded-xl overflow-hidden border border-border shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5"
             >
               <div className="aspect-square bg-muted overflow-hidden">

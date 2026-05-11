@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { getProductName } from "@/lib/storeData";
 import {
   PRODUCT_CARD_COLORS,
@@ -58,7 +58,7 @@ export default function RelatedProducts({ products = [], lang, title = "You may 
           {products.map((p, i) => (
             <Link
               key={p.id}
-              to={getProductPath(p)}
+              href={getProductPath(p)}
               style={{
                 width: RELATED_PRODUCTS_UI.cardWidth,
                 borderRadius: 12,

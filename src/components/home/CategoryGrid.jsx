@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
 import { CATEGORIES } from "@/data/products";
 import { useLang } from "@/context/LanguageContext.jsx";
 
@@ -42,7 +44,7 @@ export default function CategoryGrid() {
           return (
             <Link
               key={cat.slug}
-              to={`/collections?category=${cat.slug}`}
+              href={`/collections?category=${cat.slug}`}
               style={{
                 background: "#fdf6ed",
                 borderRadius: 10,

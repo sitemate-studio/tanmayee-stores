@@ -1,13 +1,14 @@
-import { matchPath, Outlet, useLocation } from "react-router-dom";
+"use client";
+
+import { usePathname } from "next/navigation";
 import AnnouncementBar from "./AnnouncementBar";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import WhatsAppButton from "./WhatsAppButton";
 
-export default function StoreLayout() {
-  const { pathname } = useLocation();
-  const hideFloatingWhatsApp =
-    matchPath("/:categorySlug/:productSlug", pathname) != null;
+export default function StoreLayout({ children }) {
+  const pathname = usePathname();
+  const hideFloatingWhatsApp = /^\/[^/]+\/[^/]+\/?$/.test(pathname || "");
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -15,7 +16,7 @@ export default function StoreLayout() {
       <Navbar />
 
       <main className="flex-1">
-        <Outlet />
+        {children}
       </main>
 
       <Footer />

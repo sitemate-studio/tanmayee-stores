@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
 import { useLang } from "@/context/LanguageContext";
 import { getProductName } from "@/lib/storeData";
 import { getProductPath } from "@/lib/productRouting";
@@ -9,7 +11,7 @@ import {
   COLLECTION_CARD_MEDIA_CLASS,
 } from "@/components/collections/collectionClasses";
 
-export default function CollectionProductCard({ product, index }) {
+export default function CollectionProductCard({ product, index: _index }) {
   const { lang } = useLang();
 
   const primaryName = getProductName(product, lang);
@@ -18,7 +20,7 @@ export default function CollectionProductCard({ product, index }) {
 
   return (
     <Link
-      to={getProductPath(product)}
+      href={getProductPath(product)}
       className={COLLECTION_CARD_CLASS}
     >
       <div className={COLLECTION_CARD_MEDIA_CLASS}>
