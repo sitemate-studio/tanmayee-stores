@@ -22,6 +22,7 @@ export default function CategorySelectGrid() {
             <Link
               key={cat.slug}
               href={`/collections?category=${cat.slug}`}
+              prefetch={true}
               className="group block bg-card rounded-xl overflow-hidden border border-border shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5"
             >
               <div className="aspect-square bg-muted overflow-hidden">

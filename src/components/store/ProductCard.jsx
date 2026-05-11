@@ -31,6 +31,7 @@ export default function ProductCard({
   return (
     <Link
       href={getProductPath(product)}
+      prefetch={true}
       className="group block bg-card rounded-xl overflow-hidden border border-border shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1"
     >
       <div className="relative aspect-square overflow-hidden bg-muted">

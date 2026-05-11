@@ -83,6 +83,7 @@ export default function ProductDetail() {
           {/* Category pill */}
           <Link
             href={`/collections?category=${product.category}`}
+            prefetch={true}
             style={{
               fontSize: 10,
               color: "#8b6320",
@@ -153,7 +154,7 @@ export default function ProductDetail() {
             <div style={{ display: "flex", alignItems: "flex-start", gap: 12, padding: "8px 0", borderBottom: "0.5px solid #f0e4d0" }}>
               <span style={{ fontSize: 11, color: "#b09080", minWidth: 90, paddingTop: 1 }}>Category</span>
               <span style={{ fontSize: 12, color: "#2d0a1c", fontWeight: 500 }}>
-                <Link href={`/collections?category=${product.category}`} style={{ color: "#8b6320", textDecoration: "none" }}>
+                <Link href={`/collections?category=${product.category}`} prefetch={true} style={{ color: "#8b6320", textDecoration: "none" }}>
                   {categoryName}
                 </Link>
               </span>

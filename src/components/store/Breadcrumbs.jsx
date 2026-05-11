@@ -21,6 +21,7 @@ export default function Breadcrumbs({ items = [], style, className }) {
             {item.to ? (
               <Link
                 href={item.to}
+                prefetch={true}
                 style={{
                   fontSize: 11,
                   color: "#8b6320",

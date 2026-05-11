@@ -21,6 +21,7 @@ export default function CollectionProductCard({ product, index: _index }) {
   return (
     <Link
       href={getProductPath(product)}
+      prefetch={true}
       className={COLLECTION_CARD_CLASS}
     >
       <div className={COLLECTION_CARD_MEDIA_CLASS}>

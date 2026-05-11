@@ -75,6 +75,7 @@ export default function NewArrivals({
               <Link
                 key={product.id}
                 href={getProductPath(product)}
+                prefetch={true}
                 style={{
                   width: 130,
                   borderRadius: 12,

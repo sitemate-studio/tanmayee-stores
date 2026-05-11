@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import SearchBar from "@/components/ui/SearchBar";
 import { usePathname } from "next/navigation";
 import { useLang } from "@/context/LanguageContext";
 
@@ -29,8 +30,18 @@ const NecklaceLogo = () => (
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const pathname = usePathname();
   const { lang, setLang } = useLang();
+  const searchOverlayRef = useRef(null);
+
+  useEffect(() => {
+    function onKey(e) {
+      if (e.key === "Escape") setSearchOpen(false);
+    }
+    if (searchOpen) window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [searchOpen]);
 
   return (
     <nav style={{ background: "#fdf6ed", borderBottom: "0.5px solid #e8d5b0", position: "sticky", top: 0, zIndex: 100 }}>
@@ -50,10 +61,14 @@ export default function Navbar() {
 
         {/* Desktop nav + lang toggle */}
         <div className="hidden md:flex items-center gap-6">
+          <div style={{ width: 320 }} className="hidden lg:block">
+            <SearchBar />
+          </div>
           {NAV_LINKS.map((link) => (
             <Link
               key={link.path}
               href={link.path}
+              prefetch={true}
               style={{
                 fontSize: 13,
                 color: pathname === link.path ? "#2d0a1c" : "#6b3a2a",
@@ -85,6 +100,18 @@ export default function Navbar() {
           </div>
         </div>
 
+        {/* Search icon - visible on all sizes */}
+        <button
+          className="flex items-center p-2 mr-2"
+          onClick={() => setSearchOpen(true)}
+          aria-label="Open search"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+            <path d="M21 21l-4.35-4.35" stroke="#2d0a1c" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+            <circle cx="11" cy="11" r="6" stroke="#2d0a1c" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </button>
+
         {/* Hamburger */}
         <button
           className="md:hidden flex flex-col gap-[5px] cursor-pointer p-2 bg-transparent border-none"
@@ -104,6 +131,7 @@ export default function Navbar() {
             <Link
               key={link.path}
               href={link.path}
+              prefetch={true}
               onClick={() => setMobileOpen(false)}
               style={{
                 display: "block",
@@ -135,6 +163,27 @@ export default function Navbar() {
                 {l.label}
               </button>
             ))}
+          </div>
+        </div>
+      )}
+
+      {/* Search modal/overlay */}
+      {searchOpen && (
+        <div
+          ref={searchOverlayRef}
+          role="dialog"
+          aria-modal="true"
+          onClick={(e) => { if (e.target === searchOverlayRef.current) setSearchOpen(false); }}
+          style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.35)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 200 }}
+        >
+          <div style={{ width: "92%", maxWidth: 720, background: "#fff", borderRadius: 8, padding: 16 }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
+              <div style={{ fontSize: 14, color: "#2d0a1c", fontWeight: 600 }}>Search</div>
+              <button aria-label="Close search" onClick={() => setSearchOpen(false)} style={{ padding: 6, background: "transparent", border: "none", cursor: "pointer" }}>
+                ✕
+              </button>
+            </div>
+            <SearchBar />
           </div>
         </div>
       )}

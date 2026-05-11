@@ -138,6 +138,7 @@ export default function HeroSection() {
 
       <Link
         href="/collections"
+        prefetch={true}
         style={{
           background: "#f0c96e",
           color: "#2d0a1c",

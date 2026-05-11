@@ -45,6 +45,7 @@ export default function CategoryGrid() {
             <Link
               key={cat.slug}
               href={`/collections?category=${cat.slug}`}
+              prefetch={true}
               style={{
                 background: "#fdf6ed",
                 borderRadius: 10,

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import Breadcrumbs from "@/components/store/Breadcrumbs";
 import CollectionProductCard from "@/components/collections/CollectionProductCard";
 import CategorySelectGrid from "@/components/collections/CategorySelectGrid";
@@ -31,7 +31,7 @@ const PILL_STYLE = (active) => ({
 });
 
 export default function Collections({ searchParams = {} }) {
-  const router = useRouter();
+  // router replaced by Link-based navigation for faster client transitions
   const activeCategory = searchParams.category;
   const showProducts = Boolean(activeCategory);
 
@@ -207,13 +207,14 @@ export default function Collections({ searchParams = {} }) {
       ) : (
         <>
           <div style={{ background: "#fdf6ed", padding: "10px 24px", borderBottom: "0.5px solid #e8d5b0" }}>
-            <button
-              onClick={() => router.replace("/collections")}
+            <Link
+              href="/collections"
               className="text-sm text-primary font-medium underline"
               style={{ fontFamily: "inherit", background: "none", border: "none", cursor: "pointer", padding: 0 }}
+              prefetch={true}
             >
               ← Back to categories
-            </button>
+            </Link>
           </div>
 
       <div
@@ -300,6 +301,20 @@ export default function Collections({ searchParams = {} }) {
           Filters
         </button>
       </div>
+
+      {/* Quick filter pills - always visible above the grid */}
+      {showProducts && (
+        <div style={{ padding: "12px 24px", display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
+          <div style={{ fontSize: 10, color: "#8b6320", letterSpacing: 2, textTransform: "uppercase", marginRight: 8 }}>Filter</div>
+          <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+            {[{ val: "all", label: "All" }, { val: "new", label: "✦ New Arrivals" }, { val: "in_stock", label: "In Stock" }].map((f) => (
+              <button key={f.val} onClick={() => setQuickFilter(f.val)} style={PILL_STYLE(quickFilter === f.val)}>
+                {f.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
 
       {showFilters && (
         <div style={{ background: "#fff9f2", borderBottom: "0.5px solid #e8d5b0", padding: "16px 24px" }}>

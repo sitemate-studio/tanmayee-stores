@@ -59,6 +59,7 @@ export default function RelatedProducts({ products = [], lang, title = "You may 
             <Link
               key={p.id}
               href={getProductPath(p)}
+              prefetch={true}
               style={{
                 width: RELATED_PRODUCTS_UI.cardWidth,
                 borderRadius: 12,
